@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestionale</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+          Crea account
+        </a>
+
+        {% if session['ruolo'] == 'admin' %}
+        <div class="d-flex">
+          <!-- Icona notifiche -->
+          <li class="nav-item position-relative me-5">
+            <a class="nav-link text-white" href="{{ url_for('notifiche') }}">
+              <i class="fas fa-bell fs-5"></i>
+              <span id="notificaBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">
+                0
+              </span>
+            </a>
+          </li>
+          {% endif %}
+
+          <!-- Visualizza il nome dell'utente se autenticato -->
+          {% if session['user_id'] %}
+            <span class="navbar-text text-white me-5">
+              Benvenuto, {{ session['username'] }}
+            </span>
+            <ul class="navbar-nav ms-3">
+              <!-- Link alla Dashboard -->
+              <li class="nav-item">
+                {% if session['ruolo'] == 'admin' %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                      </li>
+                    {% endif %}
+
+
+
+                    
+              </li>
+            <li class="nav-item ms-3"> <!-- ms-3 aggiunge margine sinistro -->
+            <form action="/logout" method="GET">
+              <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
+          </li>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registrazione</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .register-container {
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="register-container">
+            <h2 class="form-title">Crea un nuovo account</h2>
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" id="username" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Registrazione</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
